@@ -30,7 +30,7 @@ function openPreviousList() {
 let currentList = null;
 function loadList() {
     currentList = getCookie('listName');
-    console.log('Current List: ', currentList);
+    //console.log('Current List: ', currentList);
     currentList = currentList ? currentList : 'Untitled List';
 
     document.getElementById('currentList').textContent = escapeHTML(currentList);
@@ -38,10 +38,6 @@ function loadList() {
     let todoListJSON = localStorage.getItem(`${currentList}_todoListJSON`); // stuck
     let todoList = todoListJSON ? JSON.parse(todoListJSON) : [];
     updateDisplay(todoList);
-
-    if (!todoListJSON) {
-    console.log("Error: No existing list");
-    }
 }
 
 function addToListDisplay() {
@@ -182,8 +178,23 @@ function getThemeCookie() {
     return 'Default Mode';
 }
 
+async function getQuote() {
+    try {
+        let response = await fetch('https://api.quotable.io/random');
+
+        let data = await response.json();
+        let quoteText = data.content;
+        let quoteAuthor = data.author;
+
+        document.getElementById('quoteInput').innerHTML = `"${quoteText}" — ${quoteAuthor}`;
+    }
+    catch (error) {
+        // console.log('Error fetching quote:');
+        document.getElementById('quoteInput').textContent = 'Error fetching quote.';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme
     let savedTheme = getThemeCookie();
     if (savedTheme === 'Dark Mode')
         darkMode();
@@ -191,9 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
         lightMode();
     else
         defaultMode();
-    // Tally
     tally = parseInt(sessionStorage.getItem('tally')) || 0
-    // List
     loadList();
+    getQuote();
 });
+
 
