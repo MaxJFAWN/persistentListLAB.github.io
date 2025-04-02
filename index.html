@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Persistent TODO List</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="styleSheet.css">
+</head>
+<body>
+    <h1>Persistent To-Do List</h1>
+    <hr>
+    <p id="currentListText">Current List: <span id="currentList"></span></p>
+    <button onclick="removeCookie()">Leave List</button><br><br>
+    <label for="listName">Change List:</label>
+    <input type="text"
+           class="inputBox"
+           id="listName"
+           pattern="^[a-zA-Z0-9_]+$"
+           autocomplete="listName"><br>
+    <button onclick="openPreviousList()">Load List</button>
+
+    <br><br>
+    <hr>
+
+    <h2>To-do List</h2>
+    <form id="todoListForm">
+        <label for="todoItem">To-do:</label>
+        <input type="text"
+               class="inputBox"
+               id="todoItem"
+               pattern="^[a-zA-Z ]+$"
+               placeholder="Enter Task"> <br><br>
+        <button type="button" onclick="addToListDisplay()">Add to List</button>
+        <p>To-do List: <br><span id="list">Empty</span></p>
+
+        <br>
+
+        <label for="removeTask">Remove: </label>
+        <input type="text"
+               class="inputBox"
+               id="removeTask"
+               pattern="^[a-zA-Z ]+$"
+               placeholder="Enter Task"> <br><br>
+        <button type="button" onclick="removeFromList()">Remove From List</button>
+        <br><br>
+
+        <p id="tasksAddedText">Tasks Added: <span id="tasksAdded"></span></p>
+        <br>
+
+        <button type="button" onclick="darkMode()">Dark Mode</button>
+        <button type="button" onclick="lightMode()">Light Mode</button>
+        <button type="button" onclick="defaultMode()">Default Mode</button>
+        <p id="currentThemeText">Current List: <span id="currentTheme">Default Mode</span></p>
+    </form>
+</body>
+</html>

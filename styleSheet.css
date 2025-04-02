@@ -1,0 +1,21 @@
+body {
+    background-color: #CEE7F2;
+}
+
+button {
+    background-color: #B5DDEF;
+    color: #23235C
+}
+
+h1 {
+    color: #23235C;
+    margin-left: 200px
+}
+
+h2 {
+    margin-left: 275px
+}
+
+* {
+    color: #23235C
+}
